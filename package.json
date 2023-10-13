@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/audiobuffer-to-wav": "^1.0.2",
     "audio-recorder-polyfill": "^0.4.1",
+    "audiobuffer-to-wav": "^1.0.0",
+    "axios": "^1.5.1",
     "pcm-util": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
