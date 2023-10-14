@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import './App.css'
 
 import AudioPlayer from './AudioPlayer';
-import audioBufferToWav from 'audiobuffer-to-wav';
+import toWav from 'audiobuffer-to-wav';
 import axios from 'axios';
 
 type TranscribeResp = {
@@ -12,13 +12,12 @@ type TranscribeResp = {
 function App() {
 
   const [audioSegments, setAudioSegments] = useState<AudioBuffer[]>([]);
-  const [texts, setTexts] = useState<string[]>([]);
 
   const handleTranscribe = async () => {
     for(const buffer of audioSegments) {
-      const wavArrayBuffer = audioBufferToWav(buffer);
-      
-      const blob = new Blob([wavArrayBuffer], { type: "audio/wav" });
+      const wav = toWav(buffer);
+
+      const blob = new Blob([wav], {type: "audio/wav"});
 
       const formData = new FormData();
       formData.append('file', blob);
@@ -28,14 +27,12 @@ function App() {
         formData,
         {
           headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk3MjQyMTY4LCJpYXQiOjE2OTcyMzQ4MTMsImp0aSI6IjQ1ZGNjM2JlY2IzNzRiNDI5M2E3YTk4ZmY5YTg0NGU1IiwidXNlcl9pZCI6OX0.aMLdiOndr140h0ZumlOb3-ETCShfdT1R9kZSLkeK-38'
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk3MzA0NTcyLCJpYXQiOjE2OTcyMzQ4MTMsImp0aSI6IjNjOTNiMTQ2NDJhODRmNjM4MmQyNmZmZThhYmYyNmFkIiwidXNlcl9pZCI6OX0.MKt4Rc6LOyoRy8-CSdvfbfn_jB_T0VQtu0CQsZpRUqo'
           }
         }
       );
 
       console.log(data.message);
-
-      //setTexts(data.message)
     }
   }
 
