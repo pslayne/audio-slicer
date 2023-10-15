@@ -16,6 +16,7 @@ function App() {
   const handleTranscribe = async () => {
     for(const buffer of audioSegments) {
       const wav = toWav(buffer);
+      //const wav = toWav(audioSegments[0]);
 
       const blob = new Blob([wav], {type: "audio/wav"});
 
@@ -27,7 +28,7 @@ function App() {
         formData,
         {
           headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk3MzA0NTcyLCJpYXQiOjE2OTcyMzQ4MTMsImp0aSI6IjNjOTNiMTQ2NDJhODRmNjM4MmQyNmZmZThhYmYyNmFkIiwidXNlcl9pZCI6OX0.MKt4Rc6LOyoRy8-CSdvfbfn_jB_T0VQtu0CQsZpRUqo'
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk3MzA4NDQ5LCJpYXQiOjE2OTcyMzQ4MTMsImp0aSI6IjhlZjk2MzlhYTIwMzQ0YmRiYzViNzI2NjljYmRhMWJhIiwidXNlcl9pZCI6OX0.3_-DcIYDb4BZcCapt3FTcsTMqenlNjH7lxIwGKfhuew'
           }
         }
       );
